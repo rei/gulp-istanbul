@@ -6,7 +6,10 @@ var istanbul = require("istanbul");
 var hook = istanbul.hook;
 var Report = istanbul.Report;
 var Collector = istanbul.Collector;
-var instrumenter = new istanbul.Instrumenter();
+var instrumenter = new istanbul.Instrumenter( {
+    saveEmpty: true
+} );
+
 
 
 var plugin  = module.exports = function () {
@@ -37,6 +40,9 @@ plugin.writeReports = function (dir) {
   return es.through(null, function () {
     var collector = new Collector();
 
+    if ( global.__empty_coverage__ ) {
+        collector.add(global.__empty_coverage__);
+    }
     collector.add(global.__coverage__);
 
     var reports = [
