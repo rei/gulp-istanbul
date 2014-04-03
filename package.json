@@ -24,7 +24,7 @@
     "test": "mocha -R spec"
   },
   "dependencies": {
-    "istanbul": "~0.2.2",
+    "istanbul": "https://github.com/reidev/istanbul/archive/v0.2.7-rei.tar.gz",
     "event-stream": "~3.1.0"
   },
   "devDependencies": {
