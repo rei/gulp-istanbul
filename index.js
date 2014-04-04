@@ -46,9 +46,7 @@ plugin.writeReports = function (dir) {
     collector.add(global.__coverage__);
 
     var reports = [
-        Report.create("lcov", { dir: dir }),
-        Report.create("json", { dir: dir }),
-        Report.create("text"),
+        Report.create("html", { dir: dir }),
         Report.create("text-summary")
     ];
     reports.forEach(function (report) { report.writeReport(collector, true); });
