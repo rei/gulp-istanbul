@@ -43,7 +43,7 @@ plugin.writeReports = function ( opts ) {
     var dir = opts.dir || path.join( process.cwd(), "coverage" );
     var reportStats = opts.reportStats || false;
     var statsHost   = opts.statsHost   || 'localhost';
-    var statsPort   = opts.statsPort   || 8125;
+    var statsPort   = opts.statsPort   || undefined;
 
     return es.through( null, function () {
         var collector = new Collector();
@@ -68,7 +68,7 @@ plugin.writeReports = function ( opts ) {
 
                 metrics.gauge( 'fed.js.total_files', numberOfFiles );
                 metrics.gauge( 'fed.js.statements.covered', summary.statements.covered );
-                metrics.gauge( 'fed.js.statements.percent', summary.statements.pct );
+                metrics.gauge( 'fed.js.statements.covered_percent', summary.statements.pct );
                 metrics.gauge( 'fed.js.statements.total', summary.statements.total );
             } catch ( e ) {
                 console.log( 'Unable to report statistics: ' + e );
